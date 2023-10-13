@@ -82,7 +82,7 @@ const getAllCampaign = async (req, res) => {
     try{
         const campaigns = await Campaign.find();
 
-        res.status(200).json({
+        res.status(200).send({
             success: true,
             data: campaigns,
         });
