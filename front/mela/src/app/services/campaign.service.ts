@@ -13,12 +13,12 @@ export class CampaignService {
 
   getAllCampaigns() {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.userService.getUserDataLocalStorage().token.toString());
-    this.http.get('http://localhos:3000/campaigns',{headers})
+    this.http.get('https://mela-sigma.vercel.app/campaigns',{headers})
   }
 
   getCampaignById(id: string) {
 
-    return this.http.get<{success:Boolean, data: Campaign}>( "https://mela-six.vercel.app/api/v1/campaigns/campaign/" + id);
+    return this.http.get<{success:Boolean, data: Campaign}>( "https://mela-sigma.vercel.app/api/v1/campaigns/campaign/" + id);
   }
   searchCampignsByTitle(title: string) {
 
@@ -26,7 +26,7 @@ export class CampaignService {
       "keyword",title
     );
 
-    return this.http.get<{success: Boolean,data: Campaign[]}>("https://mela-six.vercel.app/api/v1/campaigns/search/", {params})
+    return this.http.get<{success: Boolean,data: Campaign[]}>("https://mela-sigma.vercel.app/api/v1/campaigns/search/", {params})
   }
 
 }
