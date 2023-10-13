@@ -87,7 +87,7 @@ const getAllCampaign = async (req, res) => {
             data: campaigns,
         });
     } catch (error){
-       res.status(500).json({success: false})
+       res.status(500).send({success: false})
     }
 };
 
