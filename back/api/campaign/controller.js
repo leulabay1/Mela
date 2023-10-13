@@ -165,8 +165,8 @@ const chapaPayment = async (req, res, next) => {
         const data = {
             ...otherInfo,
             "tx_ref": tx_ref,
-            "callback_url": `http://localhost:3000/api/v1/campaigns/${req.params.id}/verify?visibility=${visibility}`,
-            "return_url": `http://localhost:4200/campaign/${req.params.id}`,
+            "callback_url": `https://mela-sigma.vercel.app/api/v1/campaigns/${req.params.id}/verify?visibility=${visibility}`,
+            "return_url": `https://mela-libp.vercel.app/campaign/${req.params.id}`,
             "customization[title]": "Payment for a Campaign",
             "customization[description]": comment,
         }
