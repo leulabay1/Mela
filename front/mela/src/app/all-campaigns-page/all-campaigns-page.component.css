@@ -1,7 +1,7 @@
 .container{
     display: flex;
     flex-direction: column;
-    place-self: center;
+    margin: auto;
 }
 .search-container {
     position: sticky;
@@ -108,7 +108,8 @@
 .progress-bar{
   font-size: small;
   height: 20px;
-  color: #eeebeb;
+  color: white;
+  text-shadow: 0 0 5px #505050;
 }
 
 .detail-button {
