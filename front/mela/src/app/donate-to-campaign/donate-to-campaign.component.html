@@ -4,7 +4,7 @@
       <form [formGroup]="donationFrom" (ngSubmit)="onSubmit()"  class="w-full flex flex-col gap-6">
 
         <div class="w-full flex gap-3 items-center">
-          <img class="border-[1px] border-purple w-[50px] h-[50px]" [src]="campaignData.imageUrl && campaignData.imageUrl[0] === 'h' ? campaignData.imageUrl : 'data:image/jpeg;base64,' + campaignData.imageUrl" alt="">
+          <img class="border-[1px] border-purple w-[70px] h-[70px]" [src]="campaignData.imageUrl && campaignData.imageUrl[0] === 'h' ? campaignData.imageUrl : 'data:image/jpeg;base64,' + campaignData.imageUrl" alt="">
 
           <h1 class="text-[1rem] font-medium">Thank you for showing your hand to <span class="font-bold">" {{campaignData.title}} " </span> fund raising campaign!</h1>
         </div>
