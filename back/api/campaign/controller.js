@@ -203,6 +203,8 @@ const verifyPayment = async (req, res, next)=>{
 
         const { callback, visibility, status, trx_ref } = req.query;
 
+        console.log("trx reference -------", trx_ref)
+
         //make a request to verify the transaction is true
         const result = await axios.get(
             `https://api.chapa.co/v1/transaction/verify/${trx_ref}`,
