@@ -203,7 +203,8 @@ const verifyPayment = async (req, res, next)=>{
 
         const { callback, visibility, status, trx_ref } = req.query;
 
-        console.log("trx reference -------", trx_ref)
+        console.log("req query -------", req.query)
+        console.log("req body", req.body)
 
         //make a request to verify the transaction is true
         const result = await axios.get(
