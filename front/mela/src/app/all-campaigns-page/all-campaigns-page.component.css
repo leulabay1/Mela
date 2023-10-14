@@ -1,7 +1,7 @@
 .container{
     display: flex;
     flex-direction: column;
-  margin: auto;
+    place-self: center;
 }
 .search-container {
     position: sticky;
