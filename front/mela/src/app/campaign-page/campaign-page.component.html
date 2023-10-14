@@ -83,7 +83,7 @@
     <div class="campaign-cards">
       <div class="campaign-card" *ngFor="let relatedCampaign of campaign.relatedCampaigns">
         <a routerLink="/campaign/{{relatedCampaign._id}}">
-          <img class="border-[1px] border-purple" [src]="campaign.imageUrl && campaign.imageUrl[0] === 'h' ? relatedCampaign.imageUrl : 'data:image/jpeg;base64,' + relatedCampaign.imageUrl" alt="">
+          <img class="border-[1px] border-purple" [src]="relatedCampaign.imageUrl && relatedCampaign.imageUrl[0] === 'h' ? relatedCampaign.imageUrl : 'data:image/jpeg;base64,' + relatedCampaign.imageUrl" alt="">
           <h2 class="font-semibold text-[1.5rem]">{{relatedCampaign.title}}</h2>
           <p [innerHtml]="relatedCampaign.description"></p>
         </a>
