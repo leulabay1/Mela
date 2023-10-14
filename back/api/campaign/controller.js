@@ -195,6 +195,7 @@ const chapaPayment = async (req, res, next) => {
 //verifying the payment done on chapa with callback query sent by chapa's api
 const verifyPayment = async (req, res, next)=>{
     try{
+
         const headers = {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${config.chapa_secret_key}`
@@ -232,9 +233,9 @@ const verifyPayment = async (req, res, next)=>{
                 }
             )
 
+            console.log("here is the updated")
 
-
-            res.status(204).json({
+            res.status(200).json({
                 success: true,
                 data: updatedCampaign
             })
