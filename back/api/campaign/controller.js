@@ -221,7 +221,7 @@ const verifyPayment = async (req, res, next)=>{
                 req.params.id,
                 {
                     $push: {donations: newDonation},
-                    $inc: {donatedMoney: newDonation.amount * 0.05}
+                    $inc: {donatedMoney: newDonation.amount * 0.95}
                 },
                 {new: true}
             )
@@ -229,7 +229,7 @@ const verifyPayment = async (req, res, next)=>{
             await User.findByIdAndUpdate(
                 updatedCampaign.creatorId,
                 {
-                    $inc: {currentBalance: newDonation.amount * 0.05}
+                    $inc: {currentBalance: newDonation.amount * 0.95}
                 }
             )
 

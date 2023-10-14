@@ -32,7 +32,7 @@
                       <div class="w-full border-[1px] rounded-lg">
                         <div class="progress-bar rounded-lg overflow-visible" [style.width.%]="campaign.donatedMoney/campaign.goal*100">{{campaign.donatedMoney/campaign.goal * 100 | number:'1.2-2' }}%</div>
                       </div>
-                      <p class="text-gray-400">{{campaign.donatedMoney}}.Birr funded</p>
+                      <p class="text-gray-400">{{campaign.donatedMoney | number:'1.2-2'}}.Birr funded</p>
                     </div>
                 </div>
                 <button routerLink="/donate/{{campaign._id}}" class="w-full rounded-lg bg-buttonbg text-white text-[1.5rem] py-1 my-4">Fund this page</button>
