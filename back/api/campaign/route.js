@@ -27,7 +27,6 @@ router.route("/:id/payment")
     .post(campaignController.chapaPayment);
 
 router.route("/:id/verify")
-    .post(campaignController.verifyPayment)
     .get(campaignController.verifyPayment);
 
 router.route("/banks")
