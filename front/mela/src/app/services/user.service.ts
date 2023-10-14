@@ -119,7 +119,7 @@ export class UserService {
       formData.append("tags", tagJson)
     }
 
-    return this.http.post<{success: Boolean, data: Campaign}>("https://mela-sigma.vercel.app/api/v1/campaigns", formData)
+    return this.http.post<{success: Boolean, data: Campaign}>("http://localhost:3000/api/v1/campaigns", formData)
   }
 
   paymentInitialize(id:string, donationForm: any){

@@ -15,7 +15,7 @@
 
     <div *ngIf="!loading && campaigns.length > 0" class="campaign-cards">
       <div class="campaign-card" *ngFor="let campaign of campaigns">
-        <img src="{{campaign.imageUrl}}" alt="Campaign Image">
+        <img class="border-[1px] border-purple" [src]="campaign.imageUrl && campaign.imageUrl[0] === 'h' ? campaign.imageUrl : 'data:image/jpeg;base64,' + campaign.imageUrl" alt="">
         <div class="info">
           <h2 class="text-[1rem] font-semibold">{{campaign.title}}</h2>
           <p class="font-light text-[0.8rem]" [innerHtml]="campaign.description" ></p>

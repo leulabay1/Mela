@@ -12,7 +12,7 @@
     </div>
     <div class="top-container">
         <div class="image-container">
-           <img class="border-[1px] border-purple" src="{{campaign.imageUrl}}" alt="">
+          <img class="border-[1px] border-purple" [src]="campaign.imageUrl && campaign.imageUrl[0] === 'h' ? campaign.imageUrl : 'data:image/jpeg;base64,' + campaign.imageUrl" alt="">
         </div>
         <div class="right-container px-4 pt-2">
             <div class="owner-card text-[1rem] border-[1px] border-purple">
@@ -83,7 +83,7 @@
     <div class="campaign-cards">
       <div class="campaign-card" *ngFor="let relatedCampaign of campaign.relatedCampaigns">
         <a routerLink="/campaign/{{relatedCampaign._id}}">
-          <img src="{{relatedCampaign.imageUrl}}" alt="Campaign Image">
+          <img class="border-[1px] border-purple" [src]="campaign.imageUrl && campaign.imageUrl[0] === 'h' ? relatedCampaign.imageUrl : 'data:image/jpeg;base64,' + relatedCampaign.imageUrl" alt="">
           <h2 class="font-semibold text-[1.5rem]">{{relatedCampaign.title}}</h2>
           <p [innerHtml]="relatedCampaign.description"></p>
         </a>
@@ -91,4 +91,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

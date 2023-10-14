@@ -26,7 +26,7 @@ const createCampaign = async (req, res, next) => {
         const imageBuffer = req.file.buffer; // Get the image buffer
         const base64Image = imageBuffer.toString('base64');
 
-        req.body.tags = req.body.tags.map(tag => JSON.parse(tag));
+        // req.body.tags = req.body.tags.map(tag => JSON.parse(tag));
 
         const campaign = await Campaign.create(
             {
