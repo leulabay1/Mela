@@ -6,6 +6,8 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {Editor} from "ngx-editor";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
+import {FundraiserClassification} from "../models/fundraiserClassification";
+import {fundraiserClassifications} from "../data/fund-class";
 
 @Component({
   selector: 'app-create-campaign',
@@ -19,11 +21,14 @@ export class CreateCampaignComponent implements OnInit, OnDestroy{
   campaignForm : FormGroup;
   fundTypes = fundTags;
   loading : boolean = false;
+  fundClasses : FundraiserClassification[] = fundraiserClassifications;
+
 
   editor: Editor = new Editor();
 
   tabStatus = {
-    categoryTab: true,
+    introTab: true,
+    categoryTab: false,
     goalTab: false,
     imageTab: false,
     titleAndDiscTab: false,
@@ -64,6 +69,14 @@ export class CreateCampaignComponent implements OnInit, OnDestroy{
     this.selectedImage = null;
   }
 
+  classSelect(id: number){
+
+    this.fundClasses.forEach((fundClass)=>{
+      fundClass.selected = fundClass.id == id;
+    })
+
+  }
+
   tagSelect(type: string){
     this.fundTypes.forEach((fund)=>{
       if (fund.type === type){
@@ -77,14 +90,15 @@ export class CreateCampaignComponent implements OnInit, OnDestroy{
     this.loading = true;
 
     let selectedTags: FundTag[] = this.fundTypes.filter((fund)=>fund.selected);
+    let selectedClass: FundraiserClassification[] = this.fundClasses.filter((fundClass)=>fundClass.selected)
 
-    if (this.campaignForm.invalid || selectedTags.length == 0 || !this.selectedImageFile){
+    if (this.campaignForm.invalid || selectedTags.length == 0 || selectedClass.length == 0 || !this.selectedImageFile){
       this.toast.error("place provide all the requested data")
       this.loading = false;
       return
     }
 
-    this.userService.createCampaign(this.campaignForm.value, this.selectedImageFile!, selectedTags).subscribe(
+    this.userService.createCampaign(this.campaignForm.value, this.selectedImageFile!, selectedTags, selectedClass[0]).subscribe(
       (res)=>{
 
         this.toast.success("campaign created successfully")

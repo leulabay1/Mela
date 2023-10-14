@@ -8,6 +8,7 @@ export class Campaign {
   goal!: number;
   donatedMoney!: number;
   donations!: Donation[];
+  class?:string;
   imageUrl?: string;
   isOpen!: boolean;
   createdAt!: string;

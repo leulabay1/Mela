@@ -107,6 +107,23 @@ span {
   transform: scale(0);
 }
 
+@media screen and (min-width: 1350px){
+  .nav-links a{
+    font-size: 1.5rem;
+  }
+  .logo img{
+    width: 90px;
+    height: 90px;
+  }
+  .logo{
+    font-size: 2rem;
+  }
+  .hover-card a{
+    font-size: 20px;
+  }
+
+}
+
 @media screen and (max-width: 800px){
   .nav-links{
     display: none;

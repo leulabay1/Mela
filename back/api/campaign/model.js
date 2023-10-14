@@ -40,6 +40,7 @@ const campaignSchema = new mongoose.Schema(
             default: 0,
             required: [true, "Goal is required"],
         },
+        class: String,
         donatedMoney: {
             type: Number,
             default: 0,

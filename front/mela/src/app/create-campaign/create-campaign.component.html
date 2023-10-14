@@ -1,7 +1,43 @@
 <form [formGroup]="campaignForm" class="font-LeagueSpartan w-full h-[85%] grid place-items-center gap-3 mx-auto">
 
-  <div *ngIf="tabStatus.categoryTab" class="flex flex-col items-center gap-3 px-4 h-full max-h-full w-full">
+  <div *ngIf="tabStatus.introTab" class="flex flex-col items-center gap-3 px-4 h-full max-h-full w-full">
     <p class=" self-start ml-10 text-gray-400 text-[1.2rem] font-semibold">step <span class="text-white rounded-full bg-buttonbg px-[14px] py-[8px]">1</span></p>
+    <div  class="rounded-lg border-[1px] max-w-[95%] w-[95%] border-purple md:px-4 h-[80%] tab-card">
+
+      <img class="place-self-center p-6 max-md:hidden ilus-image" src="assets/intro-class.png" >
+
+      <div class="flex flex-col gap-4 place-self-center justify-center px-4 md:border-l-[1px] border-purple rounded-2xl h-full w-full">
+        <div class="flex flex-col gap-4 place-self-center justify-center max-w-[500px]">
+          <h2 class="text-[2.4rem] font-bold text-purple-700">
+            welcome
+          </h2>
+          <h2 class="text-[1.4rem] mb-4 font-semibold">
+            Begin setting up your fundraiser by choosing your fundraiser's reason?
+          </h2>
+
+          <div class="flex flex-col md:gap-3 gap-2 ">
+            <div *ngFor="let fundClass of fundClasses" (click)="classSelect(fundClass.id)" class="{{!fundClass.selected?'px-2 hover:cursor-pointer rounded-md border-[1px] border-black':'px-2 hover:cursor-pointer rounded-md border-[1px] border-black bg-veryLightPurple'}}">
+              <h2 class="md:text-[1.2rem] text-[0.9rem] ">
+                {{fundClass.name}}
+              </h2>
+              <p class="md:text-[0.9rem] text-[0.7rem] ">
+                {{fundClass.description}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="self-end flex gap-3 text-[1.2rem] mr-10 text-white">
+      <span (click)="tabStatus.categoryTab = true; tabStatus.introTab = false;" class="rounded-md px-4 bg-buttonbg">
+        next
+      </span>
+    </div>
+  </div>
+
+  <div *ngIf="tabStatus.categoryTab" class="flex flex-col items-center gap-3 px-4 h-full max-h-full w-full">
+    <p class=" self-start ml-10 text-gray-400 text-[1.2rem] font-semibold">step <span class="text-white rounded-full bg-buttonbg px-[14px] py-[8px]">2</span></p>
     <div  class="rounded-lg border-[1px] max-w-[95%] w-[95%] border-purple md:px-4 h-[80%] tab-card">
 
       <img class="place-self-center p-6 max-md:hidden ilus-image" src="assets/selection_illus.svg" >
@@ -20,14 +56,17 @@
     </div>
 
     <div class="self-end flex gap-3 text-[1.2rem] mr-10 text-white">
-      <span (click)="tabStatus.goalTab = true; tabStatus.categoryTab = false" class="rounded-md px-4 bg-buttonbg">
+      <span (click)="tabStatus.introTab = true; tabStatus.categoryTab = false" class="rounded-md bg-buttonbg px-4">
+        prev
+      </span>
+      <span (click)="tabStatus.categoryTab = false; tabStatus.goalTab = true" class="rounded-md bg-buttonbg px-4">
         next
       </span>
     </div>
   </div>
 
   <div *ngIf="tabStatus.goalTab" class="flex flex-col items-center gap-3 px-4 h-full max-h-full w-full">
-    <p class=" self-start ml-10 text-gray-400 text-[1.2rem] font-semibold">step <span class="text-white rounded-full bg-buttonbg px-[14px] py-[8px]">2</span></p>
+    <p class=" self-start ml-10 text-gray-400 text-[1.2rem] font-semibold">step <span class="text-white rounded-full bg-buttonbg px-[14px] py-[8px]">3</span></p>
     <div class="rounded-lg border-[1px] max-w-[95%] min-w-[95%] border-purple md:px-4 h-[80%] tab-card">
       <div class=" flex flex-col items-center justify-center md:border-r-[1px] border-purple rounded-2xl h-full">
         <h2 class="text-[1.1rem] font-semibold">
@@ -56,7 +95,7 @@
   </div>
 
   <div *ngIf="tabStatus.imageTab" class="flex flex-col items-center gap-3 md:px-4 max-h-full h-full w-full">
-    <p class=" self-start ml-10 text-gray-400 text-[1.2rem] font-semibold">step <span class="text-white rounded-full bg-buttonbg px-[14px] py-[8px]">3</span></p>
+    <p class=" self-start ml-10 text-gray-400 text-[1.2rem] font-semibold">step <span class="text-white rounded-full bg-buttonbg px-[14px] py-[8px]">4</span></p>
     <div class="rounded-lg border-[1px] max-w-[95%] w-[95%] border-purple px-4 h-[80%] tab-card">
 
       <img class="place-self-center p-6 w-full ilus-image" src="assets/image_upload_ilus.svg" >
@@ -92,7 +131,7 @@
   </div>
 
   <div *ngIf="tabStatus.titleAndDiscTab" class="flex flex-col items-center gap-3 px-4 max-h-full h-full w-full">
-    <p class=" self-start ml-10 text-gray-400 text-[1.2rem] font-semibold">step <span class="text-white rounded-full bg-buttonbg px-[14px] py-[8px]">4</span> and final</p>
+    <p class=" self-start ml-10 text-gray-400 text-[1.2rem] font-semibold">step <span class="text-white rounded-full bg-buttonbg px-[14px] py-[8px]">5</span> and final</p>
     <div class="rounded-lg border-[1px] max-w-[95%] w-[95%] border-purple px-4 h-[80%] tab-card">
       <div class="flex flex-col justify-center gap-10 items-center md:border-r-[1px] border-purple rounded-2xl h-full">
         <div class="w-full max-w-[450px]">

@@ -1,34 +1,37 @@
 import Campaign from "./model.js";
 import AppError from "../../utils/appError.js";
 import axios from "axios";
-import { getStorage, ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage"
+// import { getStorage, ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage"
 import config from "../../config.js";
 import generateDateBasedId from "../../utils/dateBasedIdGenerator.js";
-import {initializeApp} from "firebase/app";
+// import {initializeApp} from "firebase/app";
 import User from "../user/model.js";
 
-initializeApp(config.firebaseConfig)
+// initializeApp(config.firebaseConfig)
 
-const storage = getStorage();
+// const storage = getStorage();
 
 //create a campaign
 const createCampaign = async (req, res, next) => {
     try {
 
-        const storageRef = ref(storage, `images/campaignImages/${req.file.originalname + "-" + generateDateBasedId()} `)
-        const metadata = {
-            contentType: req.file.mimetype,
-        }
-        const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
+        // const storageRef = ref(storage, `images/campaignImages/${req.file.originalname + "-" + generateDateBasedId()} `)
+        // const metadata = {
+        //     contentType: req.file.mimetype,
+        // }
+        // const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
+        //
+        // const uploadUrl = await getDownloadURL(snapshot.ref);
 
-        const uploadUrl = await getDownloadURL(snapshot.ref);
+        const imageBuffer = req.file.buffer; // Get the image buffer
+        const base64Image = imageBuffer.toString('base64');
 
         req.body.tags = req.body.tags.map(tag => JSON.parse(tag));
 
         const campaign = await Campaign.create(
             {
                 ...req.body,
-                imageUrl: "uploadUrl",
+                imageUrl: base64Image,
                 donatedMoney: 0,
                 isOpen: true,
             }
@@ -217,7 +220,7 @@ const verifyPayment = async (req, res, next)=>{
                 req.params.id,
                 {
                     $push: {donations: newDonation},
-                    $inc: {donatedMoney: newDonation.amount}
+                    $inc: {donatedMoney: newDonation.amount * 0.05}
                 },
                 {new: true}
             )
@@ -225,7 +228,7 @@ const verifyPayment = async (req, res, next)=>{
             await User.findByIdAndUpdate(
                 updatedCampaign.creatorId,
                 {
-                    $inc: {currentBalance: newDonation.amount}
+                    $inc: {currentBalance: newDonation.amount * 0.05}
                 }
             )
 

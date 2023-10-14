@@ -12,6 +12,7 @@ import {EditProfile} from "../models/editProfile";
 import {Router} from "@angular/router";
 import {Campaign} from "../models/campaign";
 import {transfer} from "../models/transfer";
+import {FundraiserClassification} from "../models/fundraiserClassification";
 
 @Injectable({
   providedIn: 'root'
@@ -100,7 +101,7 @@ export class UserService {
 
 
   //create campaign by a user
-  createCampaign(campaignForm: CampaignForm, image: File, tags: FundTag[]) {
+  createCampaign(campaignForm: CampaignForm, image: File, tags: FundTag[], fundClass: FundraiserClassification) {
     // const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.getUserDataLocalStorage().token);
 
     const tagsJson = tags.map(tag=>JSON.stringify(tag))
@@ -112,6 +113,7 @@ export class UserService {
     formData.append("title", campaignForm.title)
     formData.append("goal", campaignForm.goal.toString())
     formData.append("creatorId", this.currentUser.value._id)
+    formData.append("class", fundClass.name)
 
     for (const tagJson of tagsJson){
       formData.append("tags", tagJson)

@@ -16,6 +16,7 @@ module.exports = {
       buttonbg: "#8a4ff5",
       lightPurple: "#b288fd",
       transparent: "#00000000",
+      veryLightPurple: "#c8b2ef",
       body: "#f1eded",
       white: "#ffffff",
     },
